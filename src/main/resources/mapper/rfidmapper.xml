@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.RfidDao">
+    <select id="select" resultType="po.Rfid">
+        SELECT *from rfid WHERE card_id=#{card_id}
+    </select>
+    <insert id="insert" parameterType="po.Rfid">
+        INSERT INTO rfiddata VALUE(null,#{card_id},#{type})
+    </insert>
+  <select id="selects" resultType="po.Rfid">
+      SELECT *from rfiddata where card_id=(select max(card_id) from rfiddata)
+  </select>
+</mapper>
